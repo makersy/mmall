@@ -38,6 +38,9 @@ public class CookieUtil {
         return null;
     }
 
+    /*
+    a:A
+     */
     /**
      * 写入cookie
      * @param response
@@ -47,7 +50,7 @@ public class CookieUtil {
         Cookie ck = new Cookie(COOKIE_NAME, token);
         ck.setDomain(COOKIE_DOMAIN);
         ck.setPath("/");//代表设置在根目录
-
+        ck.setHttpOnly(true);//防止脚本攻击
         //cookie存活周期，单位是s
         //若是不设置这个，cookie就不会写入硬盘，而是写在内存，只在当前页面有效
         ck.setMaxAge(60 * 60 * 24 * 365);//设置有效期1年。若是-1，则是永久
