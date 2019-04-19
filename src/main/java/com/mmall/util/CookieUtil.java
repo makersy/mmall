@@ -42,7 +42,7 @@ public class CookieUtil {
     a:A
      */
     /**
-     * 写入cookie
+     * 向用户浏览器写入cookie
      * @param response
      * @param token
      */
@@ -59,7 +59,7 @@ public class CookieUtil {
     }
 
     /**
-     * 删除cookie
+     * 删除浏览器的cookie
      * @param request
      * @param response
      */
