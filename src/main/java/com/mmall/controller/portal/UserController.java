@@ -40,9 +40,9 @@ public class UserController {
         ServerResponse<User> response = iUserService.login(username,password);
 
         if( response.isSuccess() ){ //若登录成功
-            //向浏览器和服务器的redis写入同一个sessionId
+            //向浏览器cookie写入sessionId
             CookieUtil.writeLoginToken(httpServletResponse, session.getId());
-            //注意redis中存储的键值对是 ：sessionId、User对象的json字符串，且设置了有效期
+            //向redis存储sessionId和user对象的json字符串，且设置了有效期
             RedisPoolUtil.setEx(session.getId(), JsonUtil.obj2String(response.getData()), Const.RedisCacheExtime.REDIS_SESSION_EXTIME);
         }
         return response;
@@ -52,8 +52,8 @@ public class UserController {
     @ResponseBody
     public ServerResponse<String> logout(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse){
         String loginToken = CookieUtil.readLoginToken(httpServletRequest);
-        CookieUtil.delLoginToken(httpServletRequest, httpServletResponse);
-        RedisPoolUtil.del(loginToken);
+        CookieUtil.delLoginToken(httpServletRequest, httpServletResponse);//删除cookie
+        RedisPoolUtil.del(loginToken);//删除redis中存储的记录
         return ServerResponse.createBySuccess();
     }
 
