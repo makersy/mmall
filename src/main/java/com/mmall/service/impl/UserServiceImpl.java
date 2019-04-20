@@ -1,17 +1,15 @@
 package com.mmall.service.impl;
 
-import ch.qos.logback.core.joran.event.SaxEventRecorder;
 import com.mmall.common.Const;
 import com.mmall.common.ServerResponse;
-import com.mmall.common.TokenCache;
 import com.mmall.dao.UserMapper;
 import com.mmall.pojo.User;
 import com.mmall.service.IUserService;
 import com.mmall.util.MD5Util;
+import com.mmall.util.RedisPoolUtil;
 import net.sf.jsqlparser.schema.Server;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.annotations.Param;
-import org.omg.PortableServer.SERVANT_RETENTION_POLICY_ID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -99,12 +97,19 @@ public class UserServiceImpl implements IUserService {
         if( resultCount > 0 ){
             //说明问题及问题答案是这个用户的，并且是正确的
             String forgetToken = UUID.randomUUID().toString();
-            TokenCache.setKey(TokenCache.TOKEN_PREFIX+username, forgetToken);
+            RedisPoolUtil.setEx(Const.TOKEN_PREFIX + username, forgetToken, 60 * 60 * 12);
             return ServerResponse.createBySuccess(forgetToken);
         }
         return ServerResponse.createByErrorMessage("问题答案错误");
     }
 
+    /**
+     * 忘记密码后重置
+     * @param username
+     * @param passwordNew
+     * @param forgetToken
+     * @return
+     */
     public ServerResponse<String> forgetResetPassword(String username, String passwordNew, String forgetToken){
         if( StringUtils.isBlank(forgetToken) ){
             return ServerResponse.createByErrorMessage("参数错误，token需要传递");
@@ -114,7 +119,7 @@ public class UserServiceImpl implements IUserService {
             //用户不存在
             return ServerResponse.createByErrorMessage("用户不存在");
         }
-        String token = TokenCache.getKey(TokenCache.TOKEN_PREFIX+username);
+        String token = RedisPoolUtil.get(Const.TOKEN_PREFIX+username);
         if( StringUtils.isBlank(token)){
             return ServerResponse.createByErrorMessage("token无效或者过期");
         }
@@ -132,6 +137,13 @@ public class UserServiceImpl implements IUserService {
         return ServerResponse.createByErrorMessage("修改密码失败");
     }
 
+    /**
+     * 修改密码
+     * @param passwordOld
+     * @param passwordNew
+     * @param user
+     * @return
+     */
     public ServerResponse<String> resetPassword(String passwordOld, String passwordNew, User user){
         //防止横向越权，要检验一下这个用户的旧密码，一定要指定这个用户，因为我们会查询一个count(1)。如果不指定用户，那么结果就是true，即count>0
         int resultCount = userMapper.checkPassword(MD5Util.MD5EncodeUtf8(passwordOld), user.getId());
