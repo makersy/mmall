@@ -8,7 +8,11 @@
 	http://www.springframework.org/schema/mvc
 	http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <context:component-scan base-package="com.mmall" annotation-config="true"/>
+    <!-- 去掉默认扫描，只扫描controller层 -->
+    <context:component-scan base-package="com.mmall.controller" annotation-config="true" use-default-filters="false">
+        <!--加入对controller层的扫描-->
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
 
     <mvc:annotation-driven>
         <mvc:message-converters>
@@ -36,8 +40,23 @@
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="maxUploadSize" value="10485760"/> <!-- 10m -->
         <property name="maxInMemorySize" value="4096" />
-        <property name="defaultEncoding" value="UTF-8"></property>
+        <property name="defaultEncoding" value="UTF-8"/>
     </bean>
 
+    <mvc:interceptors>
+        <!-- 定义在这里bean，所有都会拦截 -->
+        <mvc:interceptor>
+            <!--拦截类型-->
+            <!-- /manage/a.do      /manage/* -->
+            <!-- /manage/b.do      /manage/* -->
+            <!-- /manage/product/save.do    /manage/** -->
+            <!-- /manage/product/detail.do  /manage/**-->
+            <!--此处拦截/manage下请求及其子请求-->
+            <mvc:mapping path="/manage/**"/>
+            <!--防止login方法也被拦截器拦下-->
+            <!--<mvc:exclude-mapping path="/manage/user/login.do" />-->
+            <bean class="com.mmall.controller.common.interceptor.AuthorityInterceptor" />
+        </mvc:interceptor>
+    </mvc:interceptors>
 
 </beans>
