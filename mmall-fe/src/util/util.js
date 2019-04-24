@@ -43,7 +43,7 @@ var _util = {
     },
     //获取url参数
     getUrlParam: function(name) {
-        //http://www.happymmall.com/product/list.do?keyword=1
+        //http://www.mall.com/product/list.do?keyword=1
         var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)');
         var result = window.location.search.substr(1).match(reg);
         return result ? decodeURIComponent(result[2]) : null;
