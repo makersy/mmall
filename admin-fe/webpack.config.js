@@ -16,10 +16,10 @@ var config = {
         '$'         :'window.jQuery',
         'jquery'    :'window.jQuery'
     },
-    // path && publickPath
+    // path && publicPath
     output: {
         path        : __dirname + '/dist/',
-        publicPath  : WEBPACK_ENV === 'online' ? '//s.makersy.com/mmall_admin_fe/dist/' : '/dist/',
+        publicPath  : WEBPACK_ENV === 'online' ? '//s.makersy.top/mmall_admin_fe/dist/' : '/dist/',
         filename    : 'js/[name].js'
     },
     resolve: {
