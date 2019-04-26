@@ -178,7 +178,7 @@ public class OrderServiceImpl implements IOrderService {
 
     private Order assembleOrder(Integer userId, Integer shippingId, BigDecimal payment){
         Order order = new Order();
-        long orderNo = this.generateOrderNo();
+        Long orderNo = this.generateOrderNo();
         order.setOrderNo(orderNo);
         order.setStatus(Const.OrderStatusEnum.NO_PAY.getCode());
         order.setPostage(0);
@@ -196,15 +196,15 @@ public class OrderServiceImpl implements IOrderService {
         return null;
     }
 
-    private long generateOrderNo(){
-        long currentTime = System.currentTimeMillis();
-        return currentTime+new Random().nextInt(100);
+    private Long generateOrderNo(){
+        Long currentTime = System.currentTimeMillis();
+        return currentTime + new Random().nextInt(100);
     }
 
     private BigDecimal getOrderTotalPrice(List<OrderItem> orderItemList){
         BigDecimal payment = new BigDecimal("0");
         for( OrderItem orderItem : orderItemList ){
-            BigDecimalUtil.add(payment.doubleValue(),orderItem.getTotalPrice().doubleValue());
+            payment = BigDecimalUtil.add(payment.doubleValue(),orderItem.getTotalPrice().doubleValue());
         }
         return payment;
     }
