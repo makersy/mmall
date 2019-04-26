@@ -8,7 +8,7 @@
 'use strict';
 var Hogan = require('hogan.js');
 var conf = {
-    serverHost : ''
+    serverHost : 'http://admin.makersy.top'
 };
 var _mm = {
     // 网络请求
