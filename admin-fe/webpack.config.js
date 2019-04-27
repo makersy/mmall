@@ -19,8 +19,8 @@ var config = {
     // path && publicPath
     output: {
         path        : __dirname + '/dist/',
-        // publicPath  : WEBPACK_ENV === 'online' ? '//s.makersy.top/mmall_admin_fe/dist/' : '/dist/',
-        publicPath  : '/dist/',
+        publicPath  : WEBPACK_ENV === 'online' ? '//s.makersy.top/mmall_admin_fe/dist/' : '/dist/',
+        // publicPath  : '/dist/',
         filename    : 'js/[name].js'
     },
     resolve: {
