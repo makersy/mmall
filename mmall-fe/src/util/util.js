@@ -1,5 +1,5 @@
 /*
- * @Author: Makersy
+ * @Author: zhengquan
  * @Date:   2017-06-14 08:28:50
  * @Last Modified by:   hanxiao
  * @Last Modified time: 2018-01-29 22:39:19
@@ -8,7 +8,7 @@
 'use strict';
 var hogan = require('hogan.js');
 var conf = {
-    serverHost: ''
+    serverHost: 'http://mall.makersy.top'
 };
 var _util = {
     //网络请求
@@ -43,7 +43,7 @@ var _util = {
     },
     //获取url参数
     getUrlParam: function(name) {
-        //http://www.happymmall.com/product/list.do?keyword=1
+        //http://www.mall.com/product/list.do?keyword=1
         var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)');
         var result = window.location.search.substr(1).match(reg);
         return result ? decodeURIComponent(result[2]) : null;
