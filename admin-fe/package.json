@@ -1,7 +1,7 @@
 {
   "name": "mmall_admin_fe",
   "version": "1.0.0",
-  "description": "admin.happymmall.com",
+  "description": "admin.makersy.top",
   "main": "index.js",
   "scripts": {
     "dev"     : "WEBPACK_ENV=dev webpack-dev-server --port 8086 --inline --secure false",

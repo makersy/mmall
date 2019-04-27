@@ -8,6 +8,7 @@ public class ProductDetailVo {
     private String name;
     private String subtitle;
     private String mainImage;
+    private String subImages;
     private String detail;
     private BigDecimal price;
     private Integer stock;
@@ -56,6 +57,14 @@ public class ProductDetailVo {
 
     public void setMainImage(String mainImage) {
         this.mainImage = mainImage;
+    }
+
+    public String getSubImages() {
+        return subImages;
+    }
+
+    public void setSubImages(String subImages) {
+        this.subImages = subImages;
     }
 
     public String getDetail() {
