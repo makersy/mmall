@@ -8,6 +8,9 @@ import lombok.Setter;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * 订单中的商品的详情
+ */
 @Getter
 @Setter
 @NoArgsConstructor

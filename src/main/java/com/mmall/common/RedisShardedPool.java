@@ -57,6 +57,7 @@ public class RedisShardedPool {
         pool = new ShardedJedisPool(config,jedisShardInfoList, Hashing.MURMUR_HASH, Sharded.DEFAULT_KEY_TAG_PATTERN);
     }
 
+    //静态块初始化连接池，保证只初始化一次
     static{
         initPool();
     }
@@ -69,7 +70,6 @@ public class RedisShardedPool {
     public static void returnBrokenResource(ShardedJedis jedis){
         pool.returnBrokenResource(jedis);
     }
-
 
 
     public static void returnResource(ShardedJedis jedis){

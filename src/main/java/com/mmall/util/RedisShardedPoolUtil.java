@@ -31,7 +31,13 @@ public class RedisShardedPoolUtil {
         return result;
     }
 
-    //exTime的单位是秒
+    /**
+     * 添加键值对且设置有效时间
+     * @param key
+     * @param value
+     * @param exTime 单位是秒
+     * @return
+     */
     public static String setEx(String key,String value,int exTime){
         ShardedJedis jedis = null;
         String result = null;
@@ -47,6 +53,12 @@ public class RedisShardedPoolUtil {
         return result;
     }
 
+    /**
+     * 添加一个键值对
+     * @param key
+     * @param value
+     * @return
+     */
     public static String set(String key,String value){
         ShardedJedis jedis = null;
         String result = null;
@@ -63,6 +75,12 @@ public class RedisShardedPoolUtil {
         return result;
     }
 
+    /**
+     * 将key对应的值设置为value
+     * @param key
+     * @param value
+     * @return
+     */
     public static String getSet(String key,String value){
         ShardedJedis jedis = null;
         String result = null;
@@ -109,6 +127,12 @@ public class RedisShardedPoolUtil {
         return result;
     }
 
+    /**
+     * 如果key不存在，设置key、value键值对
+     * @param key
+     * @param value
+     * @return
+     */
     public static Long setnx(String key,String value){
         ShardedJedis jedis = null;
         Long result = null;
