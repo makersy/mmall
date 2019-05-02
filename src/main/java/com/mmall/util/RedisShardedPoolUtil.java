@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import redis.clients.jedis.ShardedJedis;
 
 /**
- * Created by geely
+ * Created by makersy
  */
 @Slf4j
 public class RedisShardedPoolUtil {
@@ -66,6 +66,7 @@ public class RedisShardedPoolUtil {
         try {
             jedis = RedisShardedPool.getJedis();
             result = jedis.set(key,value);
+
         } catch (Exception e) {
             log.error("set key:{} value:{} error",key,value,e);
             RedisShardedPool.returnBrokenResource(jedis);
