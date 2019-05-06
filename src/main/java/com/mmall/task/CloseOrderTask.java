@@ -47,6 +47,7 @@ public class CloseOrderTask {
             //若返回值是1，代表设置成功，获取到锁
             closeOrder(Const.REDIS_LOCK.CLOSE_ORDER_TASK_LOCK);
         } else {
+
             log.info("没有获得分布式锁:{}", Const.REDIS_LOCK.CLOSE_ORDER_TASK_LOCK);
         }
 
@@ -75,7 +76,7 @@ public class CloseOrderTask {
                 //这里设置了一个新的value值getSetResult，获取旧的值
                 String getSetResult = RedisShardedPoolUtil.getSet(Const.REDIS_LOCK.CLOSE_ORDER_TASK_LOCK, String.valueOf(System.currentTimeMillis() + lockTimeout));//key的旧值
                 if (getSetResult == null || (getSetResult != null && StringUtils.equals(lockValueStr, getSetResult))) {
-                    //若key没有旧值，或存在且前后一致。获取锁-
+                    //若key没有旧值，或存在且前后一致。获取锁。
                     closeOrder(Const.REDIS_LOCK.CLOSE_ORDER_TASK_LOCK);
                 } else {
                     log.info("没有获取到分布式锁:{}", Const.REDIS_LOCK.CLOSE_ORDER_TASK_LOCK);
@@ -94,11 +95,11 @@ public class CloseOrderTask {
         boolean getLock = false;  //是否获取锁
         try {
             //tryLock参数：等待时间，
-            if (getLock = lock.tryLock(2, 5, TimeUnit.SECONDS)) {
+            if (getLock = lock.tryLock(0, 5, TimeUnit.SECONDS)) {
                 log.info("Redisson获取分布式锁:{}, ThreadName:{}", Const.REDIS_LOCK.CLOSE_ORDER_TASK_LOCK, Thread.currentThread().getName());
                 int hour = Integer.parseInt(PropertiesUtil.getProperty("close.order.task.time.hour"));
                 //执行关单业务
-                iOrderService.closeOrder(hour);
+//                iOrderService.closeOrder(hour);
             } else {
                 log.info("Redisson没有获取到分布式锁:{}, ThreadName:{}", Const.REDIS_LOCK.CLOSE_ORDER_TASK_LOCK, Thread.currentThread().getName());
             }
@@ -107,7 +108,7 @@ public class CloseOrderTask {
         } finally{
             if (!getLock) {
                 //未获得锁
-                lock.unlock();
+                lock.unlock();  //释放锁
                 log.info("Redisson分布式锁释放");
             }
         }
