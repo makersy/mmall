@@ -13,6 +13,9 @@ MySQL，Tomcat，maven，Nginx
 
 ##### v2.0新增
 1、使用redisson框架实现了分布式锁，结合spring schedule实现定时关单操作，超过30分钟的未支付订单将自动关闭；
+
 2、尝试搭建tomcat集群并使用nginx进行负载均衡；
+
 3、使用spring mvc的拦截器进行权限控制，大幅减少权限验证代码量；
+
 4、使用lombok插件，减少pojo代码量。
