@@ -40,8 +40,6 @@ public class UserController {
     public ServerResponse<User> login(String username, String password, HttpSession session, HttpServletResponse httpServletResponse){
         ServerResponse<User> response = iUserService.login(username,password);
 
-        LinkedList q=  new LinkedList();
-
         if( response.isSuccess() ){ //若登录成功
             //向浏览器cookie写入sessionId
             CookieUtil.writeLoginToken(httpServletResponse, session.getId());
