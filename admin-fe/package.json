@@ -25,7 +25,7 @@
     "react-fileupload": "^2.4.0",
     "react-router": "^3.0.2",
     "sb-admin-2": "^3.3.8",
-    "simditor": "^2.3.6"
+    "simditor": "2.3.6"
   },
   "devDependencies": {
     "babel-core": "^6.9.1",
