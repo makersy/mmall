@@ -11,7 +11,7 @@ const conf = {
     // online
     // serverHost: 'http://admin.makersy.top'
     // dev
-    serverHost: '',
+    serverHost: 'http://admin.makersy.top',
     imageHost: 'http://img.makersy.top/',
 }
 
