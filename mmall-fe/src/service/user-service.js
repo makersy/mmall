@@ -19,7 +19,7 @@ var _user = {
             error: reject,
         });
     },
-    //登出
+    //登录
     login: function(userInfo, resolve, reject) {
         _util.request({
             url: _util.getServerUrl('/user/login.do'),
@@ -35,7 +35,7 @@ var _user = {
             url: _util.getServerUrl('/user/logout.do'),
             method: 'POST',
             success: resolve,
-            error: reject,
+            error: reject
         });
     },
     //检验用户名
