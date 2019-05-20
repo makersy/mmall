@@ -38,9 +38,8 @@ var config = {
         'order-detail': ['./src/page/order-detail/index.js'],
         'user-login': ['./src/page/user-login/index.js'],
         'user-register': ['./src/page/user-register/index.js'],
-        'user-pass-reset': ['./src/page/user-password-reset/index.js'],
+        'user-pass-reset': ['./src/page/user-pass-reset/index.js'],
         'user-pass-update'  : ['./src/page/user-pass-update/index.js'],
-        'user-find-password': ['./src/page/user-find-password/index.js'],
         'user-center': ['./src/page/user-center/index.js'],
         'user-center-update': ['./src/page/user-center-update/index.js'],
         'result': ['./src/page/result/index.js']
