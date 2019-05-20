@@ -1,3 +1,6 @@
+echo "==============打包================"
+npm run dist
+
 echo "============删除备份包============="
 rm -rf /product/front/mmall_fe/dist.bak
 
