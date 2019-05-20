@@ -47,7 +47,7 @@ var config = {
     },
     output: {
         path       : __dirname + '/dist',
-        publicPath : 'dev' === WEBPACK_ENV ? '/dist/' : '//mall.makersy.top/mmall-fe/dist/',
+        publicPath : 'dev' === WEBPACK_ENV ? '/dist/' : '//mall.makersy.top/dist/',
         // publicPath : '/dist/',
         filename   : 'js/[name].js'
     },
