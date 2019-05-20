@@ -16,7 +16,7 @@ var _user = {
             data: userInfo,
             method: 'POST',
             success: resolve,
-            error: reject,
+            error: reject
         });
     },
     //登出
@@ -26,7 +26,7 @@ var _user = {
             data: userInfo,
             method: 'POST',
             success: resolve,
-            error: reject,
+            error: reject
         });
     },
     //登出
@@ -35,7 +35,7 @@ var _user = {
             url: _util.getServerUrl('/user/logout.do'),
             method: 'POST',
             success: resolve,
-            error: reject,
+            error: reject
         });
     },
     //检验用户名
@@ -48,7 +48,7 @@ var _user = {
             },
             method: 'POST',
             success: resolve,
-            error: reject,
+            error: reject
         });
     },
     //检查登陆状态(获取用户基本信息)
@@ -57,7 +57,7 @@ var _user = {
             url: _util.getServerUrl('/user/get_user_info.do'),
             method: 'POST',
             success: resolve,
-            error: reject,
+            error: reject
         });
     },
     //获取密码提示问题
@@ -69,7 +69,7 @@ var _user = {
             },
             method: 'POST',
             success: resolve,
-            error: reject,
+            error: reject
         });
     },
     //获取用户密码提示问题的答案
@@ -79,7 +79,7 @@ var _user = {
             data: userInfo,
             method: 'POST',
             success: resolve,
-            error: reject,
+            error: reject
         });
     },
     //获取用户详细信息
@@ -88,7 +88,7 @@ var _user = {
             url: _util.getServerUrl('/user/get_information.do'),
             method: 'POST',
             success: resolve,
-            error: reject,
+            error: reject
         });
     },
     //修改个人信息
@@ -98,7 +98,7 @@ var _user = {
             data: userInfo,
             method: 'POST',
             success: resolve,
-            error: reject,
+            error: reject
         });
     },
     //重置密码信息
@@ -108,7 +108,7 @@ var _user = {
             data: passwordInfo,
             method: 'POST',
             success: resolve,
-            error: reject,
+            error: reject
         });
     }
 };
