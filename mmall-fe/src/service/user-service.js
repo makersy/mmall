@@ -61,7 +61,7 @@ var _user = {
         });
     },
     //获取密码提示问题
-    getQuesion: function(username, resolve, reject) {
+    getQuestion: function(username, resolve, reject) {
         _util.request({
             url: _util.getServerUrl('/user/forget_get_question.do'),
             data: {

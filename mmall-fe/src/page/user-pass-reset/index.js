@@ -62,7 +62,7 @@ var page = {
             // 密码提示问题答案存在
             if(answer){
                 // 检查密码提示问题答案
-                _user.checkAnswer({
+                _user.checkQuestionAnswer({
                     username : _this.data.username,
                     question : _this.data.question,
                     answer   : answer
@@ -85,7 +85,7 @@ var page = {
             // 密码不为空
             if(password && password.length >= 6){
                 // 检查密码提示问题答案
-                _user.resetPassword({
+                _user.updatePasswordInfo({
                     username        : _this.data.username,
                     passwordNew     : password,
                     forgetToken     : _this.data.token
