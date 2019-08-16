@@ -16,7 +16,6 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
-    <!--<context:annotation-config/>-->
     <aop:aspectj-autoproxy/>
 
     <!-- v2.0 spring schedule -->
