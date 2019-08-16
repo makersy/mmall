@@ -39,8 +39,8 @@ public class UserController {
     @ResponseBody
     public ServerResponse<User> login(String username, String password, HttpSession session, HttpServletResponse httpServletResponse){
         ServerResponse<User> response = iUserService.login(username,password);
-
-        if( response.isSuccess() ){ //若登录成功
+        if( response.isSuccess() ){
+            //若登录成功
             //向浏览器cookie写入sessionId
             CookieUtil.writeLoginToken(httpServletResponse, session.getId());
             //向redis存储sessionId和user对象的json字符串，且设置了有效期

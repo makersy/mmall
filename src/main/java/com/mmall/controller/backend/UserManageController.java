@@ -31,6 +31,7 @@ public class UserManageController {
             if( user.getRole() == Const.Role.ROLE_ADMIN ){
 //                //说明登陆的是管理员
 //                session.setAttribute(Const.CURRENT_USER, user);
+
                 //新增redis共享cookie、session的方式
                 CookieUtil.writeLoginToken(httpServletResponse, session.getId());
                 RedisShardedPoolUtil.setEx(session.getId(), JsonUtil.obj2String(response.getData()), Const.RedisCacheExtime.REDIS_SESSION_EXTIME);

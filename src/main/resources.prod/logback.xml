@@ -50,7 +50,7 @@
 
 
 
-    <!-- geelynote mybatis log 日志 -->
+    <!-- mybatis log 日志 -->
 
     <logger name="com.mmall.dao" level="DEBUG"/>
 

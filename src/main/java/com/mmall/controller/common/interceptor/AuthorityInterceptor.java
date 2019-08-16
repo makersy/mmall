@@ -37,7 +37,6 @@ public class AuthorityInterceptor implements HandlerInterceptor{
         HandlerMethod handlerMethod = (HandlerMethod)handler;
 
         //解析HandlerMethod
-
         String methodName = handlerMethod.getMethod().getName();
         String className = handlerMethod.getBean().getClass().getSimpleName();
 
@@ -71,17 +70,24 @@ public class AuthorityInterceptor implements HandlerInterceptor{
 
         User user = null;
 
+        //从 cookie 中读取 loginToken，判断是否已登录
         String loginToken = CookieUtil.readLoginToken(request);
+
+        //已登录，从 redis 缓存中获取对应的 user 对象
         if(StringUtils.isNotEmpty(loginToken)){
             String userJsonStr = RedisShardedPoolUtil.get(loginToken);
             user = JsonUtil.string2Obj(userJsonStr,User.class);
         }
 
+        //user获取失败，或者登陆的不是管理员，都没有权限。此时直接返回false。
+        //即不会进入 /manage 匹配的controller
         if(user == null || (user.getRole().intValue() != Const.Role.ROLE_ADMIN)){
-            //返回false.即不会调用controller里的方法
-            response.reset();// 这里要添加reset，否则报异常 getWriter() has already been called for this response.
-            response.setCharacterEncoding("UTF-8");// 这里要设置编码，否则会乱码
-            response.setContentType("application/json;charset=UTF-8");// 这里要设置返回值的类型，因为全部是json接口。
+            // 这里要添加reset，否则报异常 getWriter() has already been called for this response.
+            response.reset();
+            // 这里要设置编码，否则会乱码
+            response.setCharacterEncoding("UTF-8");
+            // 这里要设置返回值的类型，因为全部是json接口。
+            response.setContentType("application/json;charset=UTF-8");
 
             PrintWriter out = response.getWriter();
 

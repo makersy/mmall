@@ -10,6 +10,7 @@ import org.codehaus.jackson.map.SerializationConfig;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.codehaus.jackson.type.JavaType;
 import org.codehaus.jackson.type.TypeReference;
+import org.junit.Test;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -139,7 +140,8 @@ public class JsonUtil {
         }
     }
 
-    public static void main(String[] args) {
+    @Test
+    public void test(String[] args) {
         User u1 = new User();
         u1.setId(1);
         u1.setEmail("makersy@qq.com");
