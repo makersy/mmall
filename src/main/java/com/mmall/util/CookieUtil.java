@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 public class CookieUtil {
 
     //tomcat8.5之后domain开头不要加 .
-    private final static String COOKIE_DOMAIN = "happymmall.com";
+    private final static String COOKIE_DOMAIN = "makersy.top";
     private final static String COOKIE_NAME = "mmall_login_token";
 
     /**
